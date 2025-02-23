@@ -1,6 +1,6 @@
 import React from "react";
 
-const MenuCard = ({ title, content }) => {
+const MainCard = ({ title, content }) => {
   return (
     <div className="p-4 bg-white shadow-lg rounded-lg text-left">
       <h2 className="text-lg">{title}</h2>
@@ -10,4 +10,4 @@ const MenuCard = ({ title, content }) => {
   );
 };
 
-export default MenuCard;
+export default MainCard;

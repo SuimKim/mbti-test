@@ -6,10 +6,12 @@ import SignInPage from "@pages/SignInPage";
 import SignUpPage from "@pages/SignUpPage";
 import TestPage from "@pages/TestPage";
 import TestResultPage from "@pages/TestResultPage";
+import Header from "../components/layouts/Header";
 
 const Router = () => {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/my-page" element={<MyPage />} />
