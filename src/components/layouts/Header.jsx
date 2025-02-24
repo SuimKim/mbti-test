@@ -34,7 +34,7 @@ const Header = () => {
             테스트
           </Link>
           <Link
-            to={"/test-result"}
+            to={"/results"}
             className="hover:cursor-pointer hover:text-white"
           >
             결과보기
@@ -43,7 +43,6 @@ const Header = () => {
             to={"/"}
             className="hover:cursor-pointer hover:text-white"
             onClick={() => {
-              localStorage.clear();
               dispatch(logout());
             }}
           >

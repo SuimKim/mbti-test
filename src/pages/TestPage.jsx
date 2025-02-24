@@ -2,23 +2,35 @@ import React, { useState } from "react";
 import TestForm from "../components/TestForm";
 import { calculateMBTI, mbtiDescriptions } from "../libs/utils/mbtiCalculator";
 import { createTestResult } from "../libs/api/testResults";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "../components/Button";
+import { useEffect } from "react";
+import { getUserProfile } from "../libs/api/auth";
 
-const TestPage = ({ user }) => {
+const TestPage = () => {
   const [result, setResult] = useState(null);
+  const [userId, setUserId] = useState(null);
+  const [nickname, setNickname] = useState(null);
+
+  useEffect(() => {
+    const test = async () => {
+      const { id, nickname } = await getUserProfile();
+      setUserId(id);
+      setNickname(nickname);
+    };
+    test();
+  }, []);
 
   const handleTestSubmit = async (answers) => {
     const mbtiResult = calculateMBTI(answers);
     setResult(mbtiResult);
 
     await createTestResult({
-      id: "유저 ID",
-      nickname: "닉네임",
+      nickname: nickname,
       result: mbtiResult,
       visibility: true,
       date: new Date().toLocaleString(),
-      userId: "현재 사용자 ID",
+      userId: userId,
     });
   };
 

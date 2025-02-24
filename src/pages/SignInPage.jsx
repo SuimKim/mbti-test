@@ -22,11 +22,12 @@ const SignInPage = () => {
   const signInHandler = async (e) => {
     e.preventDefault();
 
-    const { accessToken } = await signIn(formState);
+    const { accessToken, nickname } = await signIn(formState);
 
     alert("로그인이 완료되었습니다.");
-    localStorage.setItem("accessToken", accessToken);
-    dispatch(login());
+    sessionStorage.setItem("accessToken", accessToken);
+    sessionStorage.setItem("userNickname", nickname);
+    dispatch(login(nickname));
     navigate("/");
 
     navigate("/");

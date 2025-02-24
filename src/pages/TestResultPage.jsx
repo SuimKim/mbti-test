@@ -20,7 +20,7 @@ const TestResultPage = () => {
       <div className="bg-white p-8 w-full flex flex-col items-center justify-center">
         <h1 className="text-2xl font-bold mb-6">MBTI 테스트 결과</h1>
         {results.map((item) => (
-          <ResultItem item={item} />
+          <ResultItem item={item} key={item.id} />
         ))}
       </div>
     </div>

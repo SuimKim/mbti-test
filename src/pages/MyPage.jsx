@@ -4,31 +4,15 @@ import FormContainer from "../components/form/FormContainer";
 import Button from "../components/Button";
 import useForm from "../libs/hooks/useForm";
 import { updateProfile } from "../libs/api/auth";
-import { useEffect } from "react";
-import axios from "axios";
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { updateNickname } from "../redux/authSlice";
 
 const MyPage = () => {
-  const accessToken = localStorage.getItem("accessToken");
-  const [userNickname, setUserNickname] = useState("");
+  const userNickname = useSelector((state) => state.auth.nickname);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    const func = async () => {
-      const response = await axios.get(
-        `https://www.nbcamp-react-auth.link/user`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      setUserNickname(response.data.nickname);
-    };
-    func();
-  }, []);
-
-  const { formState, onChangeHandler } = useForm({
+  const { formState, onChangeHandler, resetForm } = useForm({
     nickname: "",
   });
 
@@ -38,6 +22,8 @@ const MyPage = () => {
     e.preventDefault();
 
     await updateProfile(formState);
+    dispatch(updateNickname(nickname));
+    resetForm();
 
     alert("수정 완료");
   };

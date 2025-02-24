@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_URL = "https://www.nbcamp-react-auth.link";
-const accessToken = localStorage.getItem("accessToken");
+const accessToken = sessionStorage.getItem("accessToken");
 
 export const register = async (userData) => {
   const response = await axios.post(`${API_URL}/register`, userData);
