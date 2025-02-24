@@ -9,7 +9,9 @@ const TestResultPage = () => {
 
   useEffect(() => {
     const func = async () => {
-      const { data } = await axios.get(`http://localhost:4000/testResults`);
+      const { data } = await axios.get(
+        `https://truth-wealthy-postage.glitch.me/testResults`
+      );
       setResults(data);
     };
     func();
