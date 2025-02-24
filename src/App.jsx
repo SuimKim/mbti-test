@@ -1,13 +1,17 @@
 import { Provider } from "react-redux";
-import Router from "./shared/Router";
 import store from "./redux/configStore.js";
+import Router from "./shared/Router";
+import { useState } from "react";
 
 const App = () => {
+  // const queryClient = new QueryClient();
+  useQ;
   return (
-    <Provider store={store}>
-      <Router />
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        <Router />
+      </Provider>
+    </QueryClientProvider>
   );
 };
-
 export default App;
