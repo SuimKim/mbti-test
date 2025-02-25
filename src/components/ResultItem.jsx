@@ -1,57 +1,69 @@
-import React, { useEffect, useState } from "react";
 import { mbtiDescriptions } from "../libs/utils/mbtiCalculator";
-import { getUserProfile } from "../libs/api/auth";
 import {
   deleteTestResult,
   updateTestResultVisibility,
 } from "../libs/api/testResults";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { QUERY_KEYS } from "../constants/apiConstants";
+import useProfile from "../libs/hooks/useProfile";
+import { BlueButton, Button } from "./Button";
+import { Title } from "./Text";
 
 const ResultItem = ({ item }) => {
   const { id, nickname, result, visibility, date, userId } = item;
 
-  const [writerId, setWriterId] = useState(null);
+  const { auth, isAuthPending, isAuthError } = useProfile();
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    const test = async () => {
-      const { id } = await getUserProfile();
-      setWriterId(id);
-    };
-    test();
-  }, []);
+  const updateVisibilityMutation = useMutation({
+    mutationFn: updateTestResultVisibility,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.RESULTS],
+      });
+    },
+  });
 
-  const deleteHandler = async () => {
-    await deleteTestResult(id);
-  };
+  const deleteResultMutation = useMutation({
+    mutationFn: deleteTestResult,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.RESULTS],
+      });
+    },
+  });
 
-  const updateVisibilityHandler = async () => {
-    await updateTestResultVisibility(id, !visibility);
-  };
+  if (isAuthPending) {
+    return <div>Loading...</div>;
+  }
+
+  if (isAuthError) {
+    return <div>Error...</div>;
+  }
 
   return (
-    <div className="max-w-xl bg-slate-500 p-5 mb-5">
+    <div className="max-w-xl p-5 mb-5 border-2 shadow-md">
       <div className="flex justify-between">
-        <span className="text-white">{nickname}</span>
+        <span className="">{nickname}</span>
         <span className="text-slate-400">{date}</span>
       </div>
       <hr className="mb-5 mt-5 border-slate-400" />
-      <h1 className="font-bold text-2xl text-blue-900 mb-3">{result}</h1>
-      <p className="text-white mb-5">
+      <Title contents={result} />
+      <p className="mb-5">
         {mbtiDescriptions[result] || "해당 성격 유형에 대한 설명이 없습니다."}
       </p>
-      {writerId === userId ? (
-        <div className="flex justify-end">
-          <button
-            className="p-2 bg-blue-400 mr-3 rounded-lg text-white"
-            onClick={updateVisibilityHandler}
-          >
-            {visibility ? "공개로 전환" : "비공개로 전환"}
-          </button>
-          <button
-            className="p-2 bg-red-400 rounded-lg text-white"
-            onClick={deleteHandler}
-          >
-            삭제
-          </button>
+      {auth.id === userId ? (
+        <div className="flex justify-end gap-5">
+          <BlueButton
+            label={!visibility ? "공개로 전환" : "비공개로 전환"}
+            onClick={() => updateVisibilityMutation.mutate(item)}
+          />
+          <Button
+            label={"삭제"}
+            onClick={() => {
+              deleteResultMutation.mutate(id);
+            }}
+          />
         </div>
       ) : (
         <></>

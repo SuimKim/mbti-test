@@ -17,11 +17,19 @@
       "userId": "hihello1"
     },
     {
-      "id": "b895",
-      "nickname": "니나노",
+      "id": "895f",
+      "nickname": "나나2",
       "result": "ESTJ",
-      "visibility": true,
-      "date": "2025. 2. 24. 오후 7:12:34",
+      "visibility": false,
+      "date": "2025. 2. 25. 오후 2:41:13",
+      "userId": "hihello"
+    },
+    {
+      "id": "dc2c",
+      "nickname": "나나2",
+      "result": "ESTJ",
+      "visibility": false,
+      "date": "2025. 2. 25. 오후 3:08:38",
       "userId": "hihello"
     }
   ]

@@ -1,11 +1,21 @@
-import React from "react";
-
-const Button = ({ label }) => {
+export const Button = ({ label, onClick }) => {
   return (
-    <button className="w-full bg-red-400 text-white py-3 rounded-lg hover:bg-red-200 transition duration-300 hover:text-[#FF5A5F]">
+    <button
+      onClick={onClick}
+      className="bg-red-400 text-white py-2 px-6 rounded-full hover:bg-red-200 transition hover:text-[#FF5A5F]"
+    >
       {label}
     </button>
   );
 };
 
-export default Button;
+export const BlueButton = ({ label, onClick }) => {
+  return (
+    <button
+      onClick={onClick}
+      className="bg-blue-400 text-white py-2 px-6 rounded-full hover:bg-blue-200 transition hover:text-[#5abaff]"
+    >
+      {label}
+    </button>
+  );
+};

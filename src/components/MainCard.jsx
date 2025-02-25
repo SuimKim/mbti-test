@@ -1,5 +1,3 @@
-import React from "react";
-
 const MainCard = ({ title, content }) => {
   return (
     <div className="p-4 bg-white shadow-lg rounded-lg text-left">

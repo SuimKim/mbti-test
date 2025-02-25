@@ -1,13 +1,12 @@
-import React from "react";
-import MainCard from "../components/MainCard";
 import { Link } from "react-router-dom";
+import MainCard from "../components/MainCard";
+import { Button } from "../components/Button";
+import { Title } from "../components/Text";
 
 const HomePage = () => {
   return (
-    <div className="text-center">
-      <h1 className="text-center m-[20px] text-3xl font-bold">
-        무료 성격 테스트
-      </h1>
+    <div className="text-center pt-6">
+      <Title contents={"무료 성격 테스트"} />
       <p className="text-center">
         자신의 성격 유형을 확인할 수 있도록 솔직하게 답변해 주세요.
       </p>
@@ -26,9 +25,7 @@ const HomePage = () => {
         />
       </div>
       <Link to={"/test"}>
-        <button className="inline-block bg-red-400 text-white py-2 px-6 rounded-full hover:bg-red-200 transition mb-4 hover:text-[#FF5A5F]">
-          내 성격 알아보러 가기
-        </button>
+        <Button label={"내 성격 알아보러 가기"} />
       </Link>
     </div>
   );

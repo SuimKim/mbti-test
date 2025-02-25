@@ -1,8 +1,6 @@
-import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../components/form/FormInput";
 import FormContainer from "../components/form/FormContainer";
-import Button from "../components/Button";
 import useForm from "../libs/hooks/useForm";
 import { register } from "../libs/api/auth";
 
@@ -29,7 +27,11 @@ const SignUpPage = () => {
   };
 
   return (
-    <FormContainer titleLabel="회원가입" onSubmit={signUpHandler}>
+    <FormContainer
+      titleLabel="회원가입"
+      onSubmit={signUpHandler}
+      buttonName={"가입하기"}
+    >
       <FormInput
         placeholder="아이디"
         inputType="text"
@@ -51,8 +53,7 @@ const SignUpPage = () => {
         value={nickname}
         onChange={onChangeHandler}
       />
-      <Button label="가입하기" />
-      <p className="mt-5 text-gray-600">
+      <p className="mt-5 text-gray-600 absolute bottom-7">
         이미 계정이 있으신가요?{" "}
         <Link to={"/sign-in"} className="text-red-400 hover:underline">
           로그인

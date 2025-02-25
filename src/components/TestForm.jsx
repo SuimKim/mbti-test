@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { questions } from "../data/questions";
-import Button from "./Button";
+import { Button } from "./Button";
 
 const TestForm = ({ onSubmit }) => {
   const [answers, setAnswers] = useState(
@@ -19,15 +19,15 @@ const TestForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 p-6 bg-white rounded-lg">
+    <form onSubmit={handleSubmit} className="space-y-6 p-3 bg-white rounded-lg">
       {questions.map((q, index) => (
         <div key={q.id} className="mb-6">
-          <p className="font-semibold text-lg mb-3">{q.question}</p>
+          <p className="font-semibold text-md mb-3">{q.question}</p>
           <div className="space-y-2">
             {q.options.map((option, i) => (
               <label
                 key={i}
-                className={`block p-3 border rounded-lg cursor-pointer transition-colors duration-300 ${
+                className={`block p-3 border rounded-lg cursor-pointer transition-colors duration-300 text-sm ${
                   answers[index]?.answer === option ? "bg-gray-100" : ""
                 } hover:bg-gray-100`}
               >
@@ -45,7 +45,9 @@ const TestForm = ({ onSubmit }) => {
           </div>
         </div>
       ))}
-      <Button type="submit" label="제출하기" />
+      <div className="flex justify-end">
+        <Button type="submit" label="제출하기" />
+      </div>
     </form>
   );
 };

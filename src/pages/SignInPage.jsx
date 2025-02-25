@@ -1,8 +1,6 @@
-import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../components/form/FormInput";
 import FormContainer from "../components/form/FormContainer";
-import Button from "../components/Button";
 import useForm from "../libs/hooks/useForm";
 import { signIn } from "../libs/api/auth";
 import { useDispatch } from "react-redux";
@@ -22,19 +20,20 @@ const SignInPage = () => {
   const signInHandler = async (e) => {
     e.preventDefault();
 
-    const { accessToken, nickname } = await signIn(formState);
+    const { accessToken } = await signIn(formState);
 
     alert("로그인이 완료되었습니다.");
     sessionStorage.setItem("accessToken", accessToken);
-    sessionStorage.setItem("userNickname", nickname);
-    dispatch(login(nickname));
-    navigate("/");
-
+    dispatch(login());
     navigate("/");
   };
 
   return (
-    <FormContainer titleLabel="로그인" onSubmit={signInHandler}>
+    <FormContainer
+      titleLabel="로그인"
+      onSubmit={signInHandler}
+      buttonName={"로그인"}
+    >
       <FormInput
         placeholder="아이디"
         inputType="text"
@@ -49,8 +48,7 @@ const SignInPage = () => {
         value={password}
         onChange={onChangeHandler}
       />
-      <Button label="로그인" />
-      <p className="mt-5 text-gray-600">
+      <p className="text-gray-600 absolute bottom-7">
         계정이 없으신가요?{" "}
         <Link to={"/sign-up"} className="text-red-400 hover:underline">
           회원가입
