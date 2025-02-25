@@ -52,7 +52,7 @@ const MyPage = () => {
   }
 
   return (
-    <>
+    <div className="flex flex-col items-center justify-center m-5">
       <FormContainer
         titleLabel="프로필 수정"
         onSubmit={updateProfileHandler}
@@ -67,16 +67,14 @@ const MyPage = () => {
           onChange={onChangeHandler}
         />
       </FormContainer>
-      <div className="flex flex-col items-center justify-center m-5">
-        <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
-          <h1 className="text-2xl font-bold mb-6">나의 테스트 결과</h1>
-          {results.map(
-            (item) =>
-              auth.id == item.userId && <ResultItem item={item} key={item.id} />
-          )}
-        </div>
+      <div className="bg-white mt-5 shadow-lg rounded-lg p-8 max-w-md w-full">
+        <h1 className="text-2xl font-bold mb-6">나의 테스트 결과</h1>
+        {results.map(
+          (item) =>
+            auth.id == item.userId && <ResultItem item={item} key={item.id} />
+        )}
       </div>
-    </>
+    </div>
   );
 };
 

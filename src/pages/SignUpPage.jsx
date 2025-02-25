@@ -25,39 +25,41 @@ const SignUpPage = () => {
   };
 
   return (
-    <FormContainer
-      titleLabel="회원가입"
-      onSubmit={signUpHandler}
-      buttonName={"가입하기"}
-    >
-      <FormInput
-        placeholder="아이디"
-        inputType="text"
-        name="id"
-        value={id}
-        onChange={onChangeHandler}
-      />
-      <FormInput
-        placeholder="비밀번호"
-        inputType="password"
-        name="password"
-        value={password}
-        onChange={onChangeHandler}
-      />
-      <FormInput
-        placeholder="닉네임"
-        inputType="text"
-        name="nickname"
-        value={nickname}
-        onChange={onChangeHandler}
-      />
-      <p className="mt-5 text-gray-600 absolute bottom-7">
-        이미 계정이 있으신가요?{" "}
-        <Link to={"/sign-in"} className="text-red-400 hover:underline">
-          로그인
-        </Link>
-      </p>
-    </FormContainer>
+    <div className="flex flex-col items-center justify-center m-5">
+      <FormContainer
+        titleLabel="회원가입"
+        onSubmit={signUpHandler}
+        buttonName={"가입하기"}
+      >
+        <FormInput
+          placeholder="아이디"
+          inputType="text"
+          name="id"
+          value={id}
+          onChange={onChangeHandler}
+        />
+        <FormInput
+          placeholder="비밀번호"
+          inputType="password"
+          name="password"
+          value={password}
+          onChange={onChangeHandler}
+        />
+        <FormInput
+          placeholder="닉네임"
+          inputType="text"
+          name="nickname"
+          value={nickname}
+          onChange={onChangeHandler}
+        />
+        <p className="mt-5 text-gray-600 absolute bottom-7">
+          이미 등록된?{" "}
+          <Link to={"/sign-in"} className="text-red-400 hover:underline">
+            로그인
+          </Link>
+        </p>
+      </FormContainer>
+    </div>
   );
 };
 

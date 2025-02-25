@@ -29,32 +29,34 @@ const SignInPage = () => {
   };
 
   return (
-    <FormContainer
-      titleLabel="로그인"
-      onSubmit={signInHandler}
-      buttonName={"로그인"}
-    >
-      <FormInput
-        placeholder="아이디"
-        inputType="text"
-        name="id"
-        value={id}
-        onChange={onChangeHandler}
-      />
-      <FormInput
-        placeholder="비밀번호"
-        inputType="password"
-        name="password"
-        value={password}
-        onChange={onChangeHandler}
-      />
-      <p className="text-gray-600 absolute bottom-7">
-        계정이 없으신가요?{" "}
-        <Link to={"/sign-up"} className="text-red-400 hover:underline">
-          회원가입
-        </Link>
-      </p>
-    </FormContainer>
+    <div className="flex flex-col items-center justify-center m-5">
+      <FormContainer
+        titleLabel="로그인"
+        onSubmit={signInHandler}
+        buttonName={"로그인"}
+      >
+        <FormInput
+          placeholder="아이디"
+          inputType="text"
+          name="id"
+          value={id}
+          onChange={onChangeHandler}
+        />
+        <FormInput
+          placeholder="비밀번호"
+          inputType="password"
+          name="password"
+          value={password}
+          onChange={onChangeHandler}
+        />
+        <p className="text-gray-600 absolute bottom-7">
+          등록이 필요?{" "}
+          <Link to={"/sign-up"} className="text-red-400 hover:underline">
+            회원가입
+          </Link>
+        </p>
+      </FormContainer>
+    </div>
   );
 };
 
