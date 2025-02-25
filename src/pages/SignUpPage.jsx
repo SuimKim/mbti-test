@@ -15,8 +15,6 @@ const SignUpPage = () => {
 
   const { id, password, nickname } = formState;
 
-  console.log("formState", formState);
-
   const signUpHandler = async (e) => {
     e.preventDefault();
     await register(formState);

@@ -10,7 +10,6 @@ export const getTestResults = async () => {
     return response.data;
   } catch (error) {
     alert("오류가 발생했습니다. 다시 접속해주세요.");
-    console.log("error", error);
   }
 };
 
@@ -20,7 +19,6 @@ export const createTestResult = async (resultData) => {
     return response.data;
   } catch (error) {
     alert("오류가 발생했습니다. 다시 시도해주세요.");
-    console.log("error", error);
   }
 };
 
@@ -30,7 +28,6 @@ export const deleteTestResult = async (id) => {
     return response.data;
   } catch (error) {
     alert("오류가 발생했습니다. 다시 시도해주세요.");
-    console.log("error", error);
   }
 };
 
@@ -42,6 +39,5 @@ export const updateTestResultVisibility = async (resultItem) => {
     return response.data;
   } catch (error) {
     alert("오류가 발생했습니다. 다시 시도해주세요.");
-    console.log("error", error);
   }
 };

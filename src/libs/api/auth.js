@@ -26,7 +26,6 @@ export const register = async (userData) => {
     return response.data;
   } catch (error) {
     alert("오류가 발생했습니다. 다시 시도해주세요.");
-    console.log("error", error);
   }
 };
 
@@ -36,7 +35,6 @@ export const signIn = async (userData) => {
     return response.data;
   } catch (error) {
     alert("오류가 발생했습니다. 다시 시도해주세요.");
-    console.log("error", error);
   }
 };
 
@@ -51,7 +49,7 @@ export const getUserProfile = async () => {
     });
     return response.data;
   } catch (error) {
-    console.log("error", error);
+    alert("오류가 발생했습니다. 다시 시도해주세요.");
   }
 };
 
@@ -67,6 +65,5 @@ export const updateProfile = async (formData) => {
     return response.data;
   } catch (error) {
     alert("오류가 발생했습니다. 다시 시도해주세요.");
-    console.log("error", error);
   }
 };
